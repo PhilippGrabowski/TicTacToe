@@ -1,0 +1,124 @@
+body {
+    background-color: #232123;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    color: #f0f0f5;
+    font-size: 36px;
+    z-index: 1;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    width: 39.9rem;
+}
+
+td {
+    width: 13.3rem;
+    height: 13.3rem;
+    border: 5px solid #f0f0f5;
+    position: relative;
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: rgba(240, 240, 245, 0.1);
+}
+
+table tr:first-child td {
+    border-top: 0;
+}
+
+table tr td:first-child {
+    border-left: 0;
+}
+
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+table tr td:last-child {
+    border-right: 0;
+}
+
+.bx {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 13rem;
+}
+
+.bx-circle {
+    color: #e55d87;
+}
+
+.bx-x {
+    color: #5fc3e4
+}
+
+.players {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.player {
+    gap: 10px;
+    align-items: center;
+}
+
+.player i {
+    position: unset;
+    font-size: 32px;
+    z-index: 1;
+}
+
+.player span {
+    color: #f0f0f5;
+    font-size: 32px;
+    z-index: 1;
+}
+
+.active {
+    width: 260px;
+    height: 60px;
+    background-color: #232123;
+    position: relative;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    width: 260px;
+    background-image: linear-gradient(180deg, #e55d87, #5fc3e4);
+    height: 130%;
+    animation: border 3s linear infinite;
+    transition: all 0.2s linear;
+}
+
+@keyframes border {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    background: #232123;
+    inset: 5px;
+    border-radius: 15px;
+}
