@@ -1,13 +1,14 @@
 body {
-    background-color: #232123;
+    background-color: var(--black-color);
     place-items: center;
     width: 100vw;
     height: 100vh;
+    padding: 0 20px;
 }
 
 h1 {
-    color: #f0f0f5;
-    font-size: 36px;
+    color: var(--white-color);
+    font-size: var(--font-size-36);
     z-index: 1;
 }
 
@@ -22,16 +23,16 @@ tr {
 td {
     width: 13.3rem;
     height: 13.3rem;
-    border: 5px solid #f0f0f5;
+    border: 5px solid var(--white-color);
     position: relative;
-    cursor: pointer;
 }
 
 .bg {
-    background-color: #232123;
+    background-color: var(--black-color);
 }
 
-.bg:hover {
+.bg:hover,
+.result button:hover {
     background-color: rgba(240, 240, 245, 0.1);
 }
 
@@ -55,43 +56,50 @@ table tr td:last-child {
     position: absolute;
     left: 0;
     top: 0;
-    font-size: 13rem;
+    font-size: 13.3rem;
 }
 
 .bx-circle {
-    color: #e55d87;
+    color: var(--red-color);
+    font-size: 11rem;
+    left: 0.85rem;
+    top: 0.85rem;
 }
 
 .bx-x {
-    color: #5fc3e4
+    color: var(--blue-color);
 }
 
 .players {
     width: 100%;
     justify-content: space-evenly;
+    gap: 10px;
 }
 
+.result,
 .player {
     gap: 10px;
     align-items: center;
 }
 
-.player i {
-    position: unset;
-    font-size: 32px;
+.player i,
+.player span {
+    font-size: var(--font-size-32);
     z-index: 1;
 }
 
+.player i {
+    position: unset;
+}
+
 .player span {
-    color: #f0f0f5;
-    font-size: 32px;
-    z-index: 1;
+    color: var(--white-color);
 }
 
 .active {
     width: 260px;
     height: 60px;
-    background-color: #232123;
+    background-color: var(--black-color);
     position: relative;
     display: flex;
     place-content: center;
@@ -104,7 +112,7 @@ table tr td:last-child {
     content: '';
     position: absolute;
     width: 260px;
-    background-image: linear-gradient(180deg, #e55d87, #5fc3e4);
+    background-image: linear-gradient(180deg, var(--red-color), var(--blue-color));
     height: 130%;
     animation: border 3s linear infinite;
     transition: all 0.2s linear;
@@ -122,7 +130,7 @@ table tr td:last-child {
 .active::after {
     content: '';
     position: absolute;
-    background: #232123;
+    background: var(--black-color);
     inset: 5px;
     border-radius: 15px;
 }
@@ -145,4 +153,23 @@ table tr td:last-child {
 
 .win {
     background-color: rgba(255, 215, 0, 0.8);
+}
+
+.result > span {
+    color: var(--gold-color);
+    font-size: var(--font-size-32);
+}
+
+.result span ~ span {
+    color: var(--silver-color);
+    font-size: var(--font-size-32);
+}
+
+.result button {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-size: var(--font-size-24);
+    border: 2px solid var(--white-color);
+    padding: 5px 10px;
+    cursor: pointer;
 }

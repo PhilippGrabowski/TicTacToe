@@ -11,15 +11,13 @@
     <link rel="stylesheet" href="./src/css/global.css">
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/mqueries.css">
-    <script src="./src/js/settings.js"></script>
-    <script src="./src/js/templates.js"></script>
     <title>TicTacToe</title>
 </head>
 
 <body class="grid">
 
     <h1>TicTacToe</h1>
-    <div class="players flex-row">
+    <div class="players flex-wrap">
         <div id="player-1" class="player flex-row active">
             <span>Player 1</span>
             <i class='bx bx-circle'></i>
@@ -29,46 +27,51 @@
             <i class='bx bx-x'></i>
         </div>
     </div>
+    <div class="result flex-column d-none">
+        <span class="winner"></span>
+        <span class="draw d-none">Draw</span>
+        <button class="curser" onclick="restart()">Restart</button>
+    </div>
     <table>
         <tbody>
             <tr>
-                <td id="field-0" class="bg" onclick="fillShape(0)">
+                <td id="field-0" class="bg curser" onclick="fillShape(0)">
                     <i id="circle-0" class='bx bx-circle d-none'></i>
                     <i id="cross-0" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-1" class="bg" onclick="fillShape(1)">
+                <td id="field-1" class="bg curser" onclick="fillShape(1)">
                     <i id="circle-1" class='bx bx-circle d-none'></i>
                     <i id="cross-1" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-2" class="bg" onclick="fillShape(2)">
+                <td id="field-2" class="bg curser" onclick="fillShape(2)">
                     <i id="circle-2" class='bx bx-circle d-none'></i>
                     <i id="cross-2" class='bx bx-x d-none'></i>
                 </td>
             </tr>
             <tr>
-                <td id="field-3" class="bg" onclick="fillShape(3)">
+                <td id="field-3" class="bg curser" onclick="fillShape(3)">
                     <i id="circle-3" class='bx bx-circle d-none'></i>
                     <i id="cross-3" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-4" class="bg" onclick="fillShape(4)">
+                <td id="field-4" class="bg curser" onclick="fillShape(4)">
                     <i id="circle-4" class='bx bx-circle d-none'></i>
                     <i id="cross-4" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-5" class="bg" onclick="fillShape(5)">
+                <td id="field-5" class="bg curser" onclick="fillShape(5)">
                     <i id="circle-5" class='bx bx-circle d-none'></i>
                     <i id="cross-5" class='bx bx-x d-none'></i>
                 </td>
             </tr>
             <tr>
-                <td id="field-6" class="bg" onclick="fillShape(6)">
+                <td id="field-6" class="bg curser" onclick="fillShape(6)">
                     <i id="circle-6" class='bx bx-circle d-none'></i>
                     <i id="cross-6" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-7" class="bg" onclick="fillShape(7)">
+                <td id="field-7" class="bg curser" onclick="fillShape(7)">
                     <i id="circle-7" class='bx bx-circle d-none'></i>
                     <i id="cross-7" class='bx bx-x d-none'></i>
                 </td>
-                <td id="field-8" class="bg" onclick="fillShape(8)">
+                <td id="field-8" class="bg curser" onclick="fillShape(8)">
                     <i id="circle-8" class='bx bx-circle d-none'></i>
                     <i id="cross-8" class='bx bx-x d-none'></i>
                 </td>

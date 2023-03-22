@@ -1,15 +1,21 @@
 /* === Settings === */
 :root {
   /* Colors */
-  --black-color: #1f1717;
+  --black-color: #232123;
   --white-color: #f0f0f5;
+  --red-color: #e55d87;
+  --blue-color: #5fc3e4;
+  --gold-color: #ffd700;
+  --silver-color: #c0c0c0;
   
   /* Font-Size */
   --font-size-12: 12px;
   --font-size-14: 14px;
   --font-size-16: 16px;
   --font-size-18: 18px;
+  --font-size-18: 22px;
   --font-size-24: 24px;
   --font-size-28: 28px;
   --font-size-32: 32px;
+  --font-size-36: 36px;
 }

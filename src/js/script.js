@@ -1,8 +1,13 @@
+let fields = [];
+let currentShape = 'cross';
+let gameOver = false;
+let round = 0;
+
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
         changeShape()
         fields[id] = currentShape;
-        draw();
+        turn();
         checkForWin();
     }
 }
@@ -10,6 +15,11 @@ function fillShape(id) {
 function switchPlayer(player1, player2) {
     document.getElementById(player2).classList.add('active');
     document.getElementById(player1).classList.remove('active');
+}
+
+function removeActivePlayer() {
+    document.getElementById('player-2').classList.remove('active');
+    document.getElementById('player-1').classList.remove('active');
 }
 
 function changeShape() {
@@ -22,7 +32,7 @@ function changeShape() {
     }
 }
 
-function draw() {
+function turn() {
     for (let i = 0; i < fields.length; i++) {
         if (fields[i] == 'circle') {
             document.getElementById('circle-' + i).classList.remove('d-none');
@@ -31,6 +41,7 @@ function draw() {
             document.getElementById('cross-' + i).classList.remove('d-none');
         }
     }
+    round++;
 }
 
 function checkForWin() {
@@ -70,12 +81,24 @@ function checkForWin() {
 
     if (winner) {
         gameOver = true;
+        removeActivePlayer();
+        setTimeout(function () {
+            showWinner(winner);
+        }, 3000)
+    }
+
+    if (!winner && round == 9) {
+        gameOver = true;
+        removeActivePlayer();
+        setTimeout(function () {
+            showDraw();
+        }, 3000)
     }
 }
 
 function showWiningLine(field1, field2, field3) {
     addGoldBgColor(field1, field2, field3);
-    removeHover();
+    removeHoverEffect();
     pulsingShape(field1);
     pulsingShape(field2);
     pulsingShape(field3);
@@ -87,7 +110,21 @@ function addGoldBgColor(field1, field2, field3) {
     document.getElementById(`field-${field3}`).classList.add('win');
 }
 
-function removeHover() {
+function removeGoldBgColor() {
+    let fields = document.querySelectorAll('td');
+    fields.forEach(field => {
+        field.classList.remove('win');
+    })
+}
+
+function addHoverEffect() {
+    let tds = document.querySelectorAll('td');
+    tds.forEach(td => {
+        td.classList.add('bg');
+    })
+}
+
+function removeHoverEffect() {
     let tds = document.querySelectorAll('td');
     tds.forEach(td => {
         td.classList.remove('bg');
@@ -99,4 +136,54 @@ function pulsingShape(field) {
     shapes.forEach(shape => {
         shape.classList.add('puls');
     })
+}
+
+function removepulsingShape() {
+    let shapes = document.querySelectorAll('i');
+    shapes.forEach(shape => {
+        shape.classList.remove('puls');
+        shape.classList.add('d-none');
+    })
+}
+
+function showWinner(winner) {
+    if (winner == 'circle') {
+        document.querySelector('.winner').innerHTML = 'Player 1 Win';
+    } else {
+        document.querySelector('.winner').innerHTML = 'Player 2 Win';
+    }
+    changeElements('.players', '.result');
+}
+
+function showDraw() {
+    changeElements('.players', '.result');
+    changeElements('.winner', '.draw');
+}
+
+function restart() {
+    fields = [];
+    currentShape = 'cross';
+    gameOver = false;
+    round = 0;
+    showPlayers();
+    emptyFields();
+}
+
+function emptyFields() {
+    addHoverEffect();
+    removeGoldBgColor();
+    removepulsingShape();
+}
+
+function showPlayers() {
+    changeElements('.result', '.players');
+    if (document.querySelector('.draw').classList.contains('d-none') == false) {
+        changeElements('.draw', '.winner');
+    }
+    document.getElementById('player-1').classList.add('active');
+}
+
+function changeElements(element1, element2) {
+    document.querySelector(element1).classList.add('d-none');
+    document.querySelector(element2).classList.remove('d-none');
 }
