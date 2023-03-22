@@ -2,6 +2,7 @@ let fields = [];
 let currentShape = 'cross';
 let gameOver = false;
 let round = 0;
+let winner;
 
 function fillShape(id) {
     if (!fields[id] && !gameOver) {
@@ -45,7 +46,40 @@ function turn() {
 }
 
 function checkForWin() {
-    let winner;
+    checkHorizontalWin();
+    checkVerticalWin();
+    checkDiagonalWin();
+
+    if (winner) {
+        announceWin();
+    }
+
+    if (noWinnerExist()) {
+        announceDraw();
+    }
+}
+
+function announceWin() {
+    gameOver = true;
+    removeActivePlayer();
+    setTimeout(function () {
+        showWinner(winner);
+    }, 3000)
+}
+
+function noWinnerExist() {
+    return !winner && round == 9
+}
+
+function announceDraw() {
+    gameOver = true;
+    removeActivePlayer();
+    setTimeout(function () {
+        showDraw();
+    }, 3000)
+}
+
+function checkHorizontalWin() {
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         winner = fields[0];
         showWiningLine(0, 1, 2);
@@ -58,6 +92,9 @@ function checkForWin() {
         winner = fields[6];
         showWiningLine(6, 7, 8);
     }
+}
+
+function checkVerticalWin() {
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
         showWiningLine(0, 3, 6);
@@ -70,6 +107,9 @@ function checkForWin() {
         winner = fields[2];
         showWiningLine(2, 5, 8);
     }
+}
+
+function checkDiagonalWin() {
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
         showWiningLine(0, 4, 8);
@@ -77,22 +117,6 @@ function checkForWin() {
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
         winner = fields[2];
         showWiningLine(2, 4, 6);
-    }
-
-    if (winner) {
-        gameOver = true;
-        removeActivePlayer();
-        setTimeout(function () {
-            showWinner(winner);
-        }, 3000)
-    }
-
-    if (!winner && round == 9) {
-        gameOver = true;
-        removeActivePlayer();
-        setTimeout(function () {
-            showDraw();
-        }, 3000)
     }
 }
 
@@ -139,7 +163,7 @@ function pulsingShape(field) {
 }
 
 function removepulsingShape() {
-    let shapes = document.querySelectorAll('i');
+    let shapes = document.querySelectorAll('table i');
     shapes.forEach(shape => {
         shape.classList.remove('puls');
         shape.classList.add('d-none');
@@ -165,6 +189,7 @@ function restart() {
     currentShape = 'cross';
     gameOver = false;
     round = 0;
+    winner = undefined;
     showPlayers();
     emptyFields();
 }
