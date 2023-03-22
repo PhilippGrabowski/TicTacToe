@@ -74,9 +74,8 @@ function noWinnerExist() {
 function announceDraw() {
     gameOver = true;
     removeActivePlayer();
-    setTimeout(function () {
-        showDraw();
-    }, 3000)
+    showDraw();
+    
 }
 
 function checkHorizontalWin() {
